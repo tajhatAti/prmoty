@@ -14,6 +14,10 @@ AhadOs is a fully working phone OS that runs right in the browser (and installs 
 - **Lock screen** with swipe-up unlock + boot animation
 - **PWA** — add to your phone's home screen and it runs fullscreen like a real OS
 
+## 🌍 LIVE
+
+**https://tajhatati.github.io/prmoty/** — deployed via GitHub Pages. Any change pushed to the repo auto-deploys! 🚀
+
 ## 🚀 Run it
 
 ```bash
