@@ -18,13 +18,14 @@ AhadOs একটা **static website** (HTML/CSS/JS) — মানে যেক�
 5. Content: repo-র রুটে রাখা **`ahados-pages-workflow.yml`** ফাইলটা খুলে পুরোটা copy করে paste করো (নিচেও দেওয়া আছে)
 6. **Commit directly to the `arena/01a0576c-prmoty` branch** → Commit
 
-**Part B — Pages চালু করো:**
+**Part B — Pages চালু করো (⚠️ Source অবশ্যই "GitHub Actions" হতে হবে):**
 1. Repo → **Settings** → বাঁ পাশে **Pages**
-2. **Build and deployment** → **Source: GitHub Actions** → **Save**
-3. **Actions** tab-এ গিয়ে দেখো workflow green ✔ হচ্ছে (১-২ মিনিট)
-4. লাইভ: **`https://tajhatAti.github.io/prmoty/`** 🎉
+2. **Build and deployment** → **Source** ড্রপডাউনে ডিফল্ট থাকে **"Deploy from a branch"** — এটা বদলে **`GitHub Actions`** select করো
+3. **Save** চাপো
+4. তারপর **Actions** tab → সবচেয়ে উপরের run-টা → **Re-run all jobs** (অথবা আমাকে বলো, আমি একটা change push করলেই auto-run হয়ে যাবে)
+5. সবুজ ✔ দেখলে লাইভ: **`https://tajhatati.github.io/prmoty/`** 🎉
 
-> 💡 Note: Part B আগে করলে ভালো (Source: GitHub Actions), তারপর Part A commit করলে সরাসরি deploy হবে। প্রথম run-এ কোনো কারণে fail হলে **Actions → Re-run** চাপো।
+> ⚠️ **সবচেয়ে কমন ভুল:** Source "Deploy from a branch"-এ থাকলে workflow fail করে — error: `Get Pages site failed. Please verify that the repository has Pages enabled and configured to build using GitHub Actions`. সমাধান: উপরের ধাপ ২-এ Source = **GitHub Actions**। (একবার "Deploy from a branch" দিয়ে enable করলে পরে Source বদলালেই হয়।)
 
 **Workflow content (`ahados-pages-workflow.yml` — এটা exact copy):**
 
