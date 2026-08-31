@@ -1,0 +1,16 @@
+{
+  "name": "AhadOs — Your Phone OS",
+  "short_name": "AhadOs",
+  "description": "Your own phone OS with custom apps, icons, wallpapers, notifications and themes. Built by Ahad.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0b12",
+  "theme_color": "#0b0b12",
+  "lang": "en",
+  "icons": [
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

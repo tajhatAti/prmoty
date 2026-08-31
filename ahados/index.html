@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ios" data-mode="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>AhadOs — Your Phone OS</title>
+<meta name="description" content="AhadOs — your own phone OS. Custom app icons, wallpapers, notifications, and themes. Built by Ahad.">
+<meta name="theme-color" content="#0b0b12">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AhadOs">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon-512.png">
+<link rel="apple-touch-icon" href="assets/icons/icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/os.css">
+<link rel="stylesheet" href="css/apps.css">
+</head>
+<body>
+
+<div id="phone">
+  <div class="fbtn fbtn-a"></div>
+  <div class="fbtn fbtn-b"></div>
+  <div class="fbtn fbtn-c"></div>
+
+  <div id="screen">
+
+    <!-- Wallpaper layer -->
+    <img id="wallpaper" src="assets/wallpapers/wall-aurora.jpg" alt="AhadOs wallpaper">
+    <div id="wall-scrim"></div>
+
+    <!-- Boot animation -->
+    <div id="boot">
+      <div class="boot-logo">A</div>
+      <div class="boot-name">AHADOS</div>
+      <div class="boot-bar"><i></i></div>
+    </div>
+
+    <!-- Lock screen -->
+    <div id="lock">
+      <div class="lock-mid">
+        <div class="lock-time">10:24</div>
+        <div class="lock-date">Sunday, August 31</div>
+      </div>
+      <div class="lock-bot">
+        <div class="lock-hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>&nbsp;Swipe to unlock</div>
+        <div class="lock-brand">AhadOs</div>
+      </div>
+    </div>
+
+    <!-- Status bar -->
+    <div id="statusbar">
+      <div id="sb-time" class="sb-item">10:24</div>
+      <div id="notch"></div>
+      <div class="sb-right">
+        <div id="sb-signal" class="sb-item"><svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="4.5" width="3" height="6.5" rx="1"/><rect x="9" y="2" width="3" height="9" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg></div>
+        <div id="sb-wifi" class="sb-item"><svg width="15" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
+        <div id="sb-batt" class="sb-item"><div class="batt"><i id="batt-fill" style="width:86%"></i></div><span id="batt-pct">86</span></div>
+      </div>
+    </div>
+
+    <!-- Home screen -->
+    <div id="home">
+      <div class="home-widget">
+        <div class="hw-time">10:24</div>
+        <div class="hw-date">Sunday, August 31</div>
+        <div class="hw-weather">☀️ 32°C · Dhaka</div>
+      </div>
+      <div id="app-grid"></div>
+      <div id="dock"></div>
+    </div>
+
+    <!-- App drawer -->
+    <div id="drawer">
+      <div class="drawer-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="drawer-input" type="text" placeholder="Search apps" autocomplete="off">
+      </div>
+      <div id="drawer-grid"></div>
+    </div>
+
+    <!-- Notification shade -->
+    <div id="shade">
+      <div class="shade-grab"></div>
+      <div class="shade-head">
+        <div class="sh-time">10:24</div>
+        <div class="sh-date">Sunday, August 31</div>
+      </div>
+      <div id="quick-toggles"></div>
+      <div class="sh-sub">
+        <span>Notifications</span>
+        <button id="clear-all">Clear all</button>
+      </div>
+      <div id="notif-list"></div>
+    </div>
+
+    <!-- App window -->
+    <div id="appwin">
+      <div id="aw-header">
+        <button id="aw-back" aria-label="Back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <div id="aw-title">App</div>
+        <div id="aw-right"></div>
+      </div>
+      <div id="aw-body"></div>
+    </div>
+
+    <!-- Overlays -->
+    <div id="banners"></div>
+    <div id="toasts"></div>
+    <div id="flash"></div>
+    <div id="confetti"></div>
+    <div id="navbar"><div id="home-pill"></div></div>
+
+  </div>
+</div>
+
+<script src="js/icons.js"></script>
+<script src="js/data.js"></script>
+<script src="js/core.js"></script>
+<script src="js/apps.js"></script>
+<script src="js/main.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function () {});
+}
+</script>
+</body>
+</html>
