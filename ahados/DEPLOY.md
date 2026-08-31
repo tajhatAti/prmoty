@@ -6,44 +6,76 @@ AhadOs একটা **static website** (HTML/CSS/JS) — মানে যেক�
 
 ## ১) GitHub Pages (সবচেয়ে ভালো — শুধু GitHub account লাগে) ✅
 
-**Option A — আলাদা repo বানিয়ে (সবচেয়ে সহজ):**
-1. GitHub-এ নতুন repo বানাও: **New repository** → নাম `ahados` → **Public** → Create
-2. **uploading an existing file** link-এ ক্লিক করে `ahados-site.zip` টেনে drop করো (zip সরাসরি upload করা যায়)
-3. **Settings → Pages** → **Source: Deploy from a branch** → `main` / `(root)` → **Save**
-4. ১ মিনিটে লাইভ: **`https://<তোমার-username>.github.io/ahados/`** 🎉
+**Step-by-step (আমার মতো agent-এর জন্য — যেখানে workflow push permission নেই):**
 
-**Option B — একই repo-তে (prmoty):**
-1. GitHub-এ `.github/workflows/ahados-pages.yml` ফাইল বানাও (নিচের YAML copy-paste):
-   ```yaml
-   name: Deploy AhadOs to GitHub Pages
-   on:
-     push:
-       branches: [main]
-     workflow_dispatch:
-   permissions:
-     contents: read
-     pages: write
-     id-token: write
-   concurrency:
-     group: pages
-     cancel-in-progress: true
-   jobs:
-     deploy:
-       environment:
-         name: github-pages
-         url: ${{ steps.deployment.outputs.page_url }}
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v4
-         - uses: actions/configure-pages@v5
-         - uses: actions/upload-pages-artifact@v3
-           with:
-             path: ahados
-         - id: deployment
-           uses: actions/deploy-pages@v4
-   ```
-2. **Settings → Pages** → **Source: GitHub Actions** → **Save**
-3. Branch-এ push করলেই auto-deploy হবে: `https://tajhatAti.github.io/prmoty/`
+> কাজটি ২ ভাগ: **(A)** workflow ফাইল commit (তুমি করবে) → **(B)** Pages setting (তুমি করবে)। তারপর থেকে যেকোনো change auto-deploy! 🎉
+
+**Part A — workflow ফাইল commit করো:**
+1. [github.com/tajhatAti/prmoty](https://github.com/tajhatAti/prmoty) খোলো
+2. Branch dropdown-এ **`arena/01a0576c-prmoty`** select করো (গুরুত্বপূর্ণ! এই branch-এ push হয় বলে workflow-ও এই branch-এ থাকা লাগবে)
+3. **Add file → Create new file**
+4. File name-এ লিখো: **`.github/workflows/ahados-pages.yml`**
+5. Content: repo-র রুটে রাখা **`ahados-pages-workflow.yml`** ফাইলটা খুলে পুরোটা copy করে paste করো (নিচেও দেওয়া আছে)
+6. **Commit directly to the `arena/01a0576c-prmoty` branch** → Commit
+
+**Part B — Pages চালু করো:**
+1. Repo → **Settings** → বাঁ পাশে **Pages**
+2. **Build and deployment** → **Source: GitHub Actions** → **Save**
+3. **Actions** tab-এ গিয়ে দেখো workflow green ✔ হচ্ছে (১-২ মিনিট)
+4. লাইভ: **`https://tajhatAti.github.io/prmoty/`** 🎉
+
+> 💡 Note: Part B আগে করলে ভালো (Source: GitHub Actions), তারপর Part A commit করলে সরাসরি deploy হবে। প্রথম run-এ কোনো কারণে fail হলে **Actions → Re-run** চাপো।
+
+**Workflow content (`ahados-pages-workflow.yml` — এটা exact copy):**
+
+```yaml
+name: Deploy AhadOs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - 'arena/01a0576c-prmoty'
+      - 'main'
+    paths:
+      - 'ahados/**'
+      - '.github/workflows/ahados-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload AhadOs site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ahados
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+**🤖 Auto-update কিভাবে কাজ করে:**
+- এই workflow-এ `branches: arena/01a0576c-prmoty` + `paths: ahados/**` দেওয়া আছে
+- আমি যখনই AhadOs-এর কোনো ফাইল বদলাই ও push করি → GitHub Actions নিজে নিজে চালু হয়ে সাইট redeploy করে
+- তোমাকে আর কিছু করতে হবে না — শুধু প্রথমবার Part A + Part B
+
+**Alternative (আলাদা repo):** নতুন repo `ahados` বানিয়ে `ahados-site.zip` upload → Settings → Pages → Deploy from a branch → main/(root)।
 
 ---
 
