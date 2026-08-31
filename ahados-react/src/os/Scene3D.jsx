@@ -12,6 +12,22 @@ export default function Scene3D({ active }) {
     const mount = mountRef.current;
     if (!mount) return;
 
+    // graceful fallback if WebGL unavailable (test envs / old devices)
+    if (!(typeof WebGLRenderingContext !== 'undefined' && (() => {
+      try {
+        const c = document.createElement('canvas');
+        return !!(window.WebGL2RenderingContext
+          ? c.getContext('webgl2') || c.getContext('webgl')
+          : c.getContext('webgl'));
+      } catch { return false; }
+    })())) {
+      mount.style.background =
+        'radial-gradient(60% 50% at 20% 20%, rgba(168,85,247,.22), transparent 60%),' +
+        'radial-gradient(50% 40% at 80% 30%, rgba(34,211,238,.16), transparent 60%),' +
+        'radial-gradient(60% 50% at 50% 90%, rgba(236,72,153,.12), transparent 60%)';
+      return;
+    }
+
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(mount.clientWidth, mount.clientHeight);

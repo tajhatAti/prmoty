@@ -59,20 +59,23 @@ function ClockApp() {
 
 /* ================= CALCULATOR ================= */
 function CalcApp() {
-  const [expr, setExpr] = useState('');
+  const exprRef = useRef('');
   const [disp, setDisp] = useState('0');
   const keys = [['C','op'],['(', 'op'],[')','op'],['÷','op'],['7',''],['8',''],['9',''],['×','op'],['4',''],['5',''],['6',''],['−','op'],['1',''],['2',''],['3',''],['+','op'],['0','zero'],['.',''],['⌫','op'],['=','eq']];
+  const [expr, setExpr] = useState('');
   const press = (k) => {
-    if (k === 'C') { setExpr(''); setDisp('0'); return; }
-    if (k === '⌫') { setExpr(e => { const n = e.slice(0, -1); setDisp(n || '0'); return n; }); return; }
+    if (k === 'C') { exprRef.current = ''; setExpr(''); setDisp('0'); return; }
+    if (k === '⌫') { exprRef.current = exprRef.current.slice(0, -1); setExpr(exprRef.current); setDisp(exprRef.current || '0'); return; }
     if (k === '=') {
       try {
-        const v = Function('"use strict";return (' + expr.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-') + ')')();
-        setDisp(String(Math.round(v * 1e9) / 1e9)); setExpr(String(Math.round(v * 1e9) / 1e9));
-      } catch { setDisp('Error'); setExpr(''); }
+        const v = Function('"use strict";return (' + exprRef.current.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-') + ')')();
+        exprRef.current = String(Math.round(v * 1e9) / 1e9);
+        setExpr(exprRef.current); setDisp(exprRef.current);
+      } catch { setDisp('Error'); exprRef.current = ''; setExpr(''); }
       return;
     }
-    setExpr(e => { const n = e + k; setDisp(n); return n; });
+    exprRef.current += k;
+    setExpr(exprRef.current); setDisp(exprRef.current);
   };
   return (
     <motion.div {...fade}>

@@ -177,10 +177,9 @@ function Drawer() {
         <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search apps" autoFocus={drawer} />
       </div>
       <div className="drawer-grid">
-        {list.map(id => {
-          const meta = APPS.find(a => a.id === id);
-          return <AppTile key={id} id={id} name={meta.name} onClick={() => { setDrawer(false); setTimeout(() => launch(id), 180); }} />;
-        })}
+        {list.map(a => (
+          <AppTile key={a.id} id={a.id} name={a.name} onClick={() => { setDrawer(false); setTimeout(() => launch(a.id), 180); }} />
+        ))}
       </div>
     </motion.div>
   );

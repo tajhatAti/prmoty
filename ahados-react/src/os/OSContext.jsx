@@ -88,7 +88,7 @@ export function OSProvider({ children }) {
       toggles, toggle, flashOn,
       notifs, addNotif, clearNotifs,
       installed, install, appMeta,
-      toast, vibrate,
+      toast, toasts, vibrate,
     }}>
       {children}
     </OSContext.Provider>
