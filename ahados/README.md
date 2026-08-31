@@ -1,65 +1,62 @@
 # AhadOs 📱💜
 
-**আপনার নিজের ফোন OS — আপনার আইকন, আপনার wallpaper, আপনার notification style, সবকিছু আপনার।**
+**আপনার নিজের ফোন OS — React + Three.js দিয়ে বানানো, 3D glass design।**
 
-AhadOs is a fully working phone OS that runs right in the browser (and installs on any phone as a PWA). Built entirely by **Ahad** — every icon, wallpaper, and theme.
+AhadOs v2 is a fully working phone OS that runs in the browser (and installs on any phone as a PWA). Built entirely by **Ahad** — every icon, wallpaper, 3D scene, and animation.
 
-## ✨ Features
+## ✨ Features (v2)
 
-- **4 theme looks** — iOS (frosted glass), Minimal (warm flat), Neon (cyberpunk glow) × Light/Dark modes
-- **17+ built-in apps** — Phone, Messages (with auto-replies 😄), Browser, Camera, Photos, Gallery, Clock (alarms + stopwatch), Calculator, Weather (Dhaka), Music player, Notes, Files, Wallet, Ahad Store, Theme Center, Settings, About
-- **Ahad Store** — install playable **Snake** and **2048** games right into your OS
-- **Notification shade** — quick settings toggles (Wi-Fi, Bluetooth, Flashlight, DND…), heads-up banners, actionable notifications
-- **6 exclusive wallpapers** — switch anytime from Settings
-- **Lock screen** with swipe-up unlock + boot animation
-- **PWA** — add to your phone's home screen and it runs fullscreen like a real OS
+- **Unified design** — glassmorphism + neon glow + iOS-style icons + minimal typography, all blended into ONE signature look (no separate themes)
+- **3D animated background** — floating glass shapes + glowing particles (Three.js)
+- **Buttery animations** — Framer Motion everywhere (lock screen drag, app opening, shade, toasts)
+- **18 apps** — Phone, Messages (auto-replies 😄), Browser, Camera, Photos, Gallery, Clock (alarms + stopwatch), Calculator, Weather (Dhaka), Music, Notes, Files, Wallet, Ahad Store, Settings, About + playable **Snake** & **2048**
+- **Notification shade** — quick toggles, heads-up banners, actionable notifications
+- **6 wallpapers** — switch anytime from Settings
+- **PWA** — install on your phone's home screen, runs fullscreen
 
 ## 🌍 LIVE
 
-**https://tajhatati.github.io/prmoty/** — deployed via GitHub Pages. Any change pushed to the repo auto-deploys! 🚀
+**https://tajhatati.github.io/prmoty/** — auto-deploys via GitHub Actions on every push.
 
-## 🚀 Run it
+## 🚀 Develop
 
 ```bash
-cd ahados
-python3 -m http.server 8080
-# open http://localhost:8080
+cd ahados-react
+npm install
+npm run dev        # dev server
+npm run build      # builds into ../ahados (deployed folder)
 ```
 
 ## 📂 Structure
 
 ```
-ahados/
-├── index.html          # OS shell (screen, lock, home, shade, app window)
-├── manifest.webmanifest # PWA manifest
-├── sw.js               # service worker (offline)
-├── css/
-│   ├── themes.css      # 4 themes × light/dark variables
-│   ├── os.css          # core OS chrome (status bar, shade, boot…)
-│   └── apps.css        # in-app UI styles
-├── js/
-│   ├── icons.js        # hand-coded app icon library (SVG)
-│   ├── data.js         # apps, wallpapers, notifications, songs, chats…
-│   ├── core.js         # OS engine (launcher, clock, shade, toggles)
-│   ├── apps.js         # all app views
-│   └── main.js         # entry point
-└── assets/
-    ├── icons/          # app icon / PWA icon
-    └── wallpapers/     # 6 wallpapers + gallery photos
+ahados-react/          # React source (v2)
+├── src/
+│   ├── main.jsx       # entry
+│   ├── App.jsx        # OS shell (lock, home, shade, app window, nav)
+│   ├── os/
+│   │   ├── OSContext.jsx  # global state (boot, apps, toggles, notifs)
+│   │   ├── Scene3D.jsx    # Three.js glass + particles background
+│   │   ├── icons.jsx      # SVG icon library
+│   │   └── data.js        # all app/content data
+│   ├── apps/Apps.jsx      # all app views
+│   └── styles/global.css  # unified design system
+└── public/            # wallpapers, icons, manifest, sw
+ahados/                # build output (deployed to GitHub Pages)
 ```
 
 ## 📲 Install on your phone
 
-1. Open the AhadOs URL in Chrome on your phone
+1. Open https://tajhatati.github.io/prmoty/ in Chrome
 2. Menu → **Add to Home Screen**
-3. Launch it — it opens fullscreen like a real OS 🎉
+3. Launch it — fullscreen OS experience 🎉
 
 ## 🛠️ Coming next
 
-- [ ] More store apps (music player skins, games…)
-- [ ] Live wallpaper mode
+- [ ] More store apps & games
+- [ ] Live wallpaper (video/particles)
 - [ ] Widgets on home screen
-- [ ] Bengali (বাংলা) UI language
+- [ ] Bengali (বাংলা) UI
 
 ---
-Built with 💜 by Ahad · v1.0.1 (GitHub Pages live!) · 2026-08-31
+Built with 💜 by Ahad · v2.0.0 · React 19 + Three.js + Framer Motion
