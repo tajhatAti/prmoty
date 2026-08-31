@@ -58,4 +58,4 @@ ahados/
 - [ ] Bengali (বাংলা) UI language
 
 ---
-Built with 💜 by Ahad · v1.0.0
+Built with 💜 by Ahad · v1.0.1 (GitHub Pages live!) · 2026-08-31
