@@ -60,3 +60,4 @@ ahados/                # build output (deployed to GitHub Pages)
 
 ---
 Built with 💜 by Ahad · v2.0.0 · React 19 + Three.js + Framer Motion
+- Redeployed: v2.0.0 (React + Three.js)
