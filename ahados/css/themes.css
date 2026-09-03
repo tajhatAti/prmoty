@@ -10,7 +10,69 @@
   --sb-h: 38px;
   --nav-h: 48px;
   --ease: cubic-bezier(.2, .9, .25, 1);
+  /* Tap-feedback pair: quick press-down, bouncy spring release — mimics native iOS/Claude-app button feel */
+  --ease-press: cubic-bezier(.4, 0, .2, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --font-clock: var(--font-display);
 }
+
+/* ---------- Ahad · Signature monochrome (default look) ---------- */
+html[data-theme="ahad"][data-mode="light"] {
+  --wall-scrim: rgba(255,255,255,.24);
+  --sb-color: #161616;
+  --accent: #1c1c1e;
+  --accent-2: #3a3a3c;
+  --text: #161616;
+  --text-muted: #8a8a8e;
+  --surface: rgba(255,255,255,.7);
+  --surface-2: rgba(255,255,255,.55);
+  --surface-3: rgba(0,0,0,.06);
+  --border: rgba(0,0,0,.08);
+  --glass: rgba(250,250,250,.75);
+  --glass-blur: 34px;
+  --app-bg: #f4f4f5;
+  --icon-radius: 24%;
+  --card-radius: 20px;
+  --shadow: 0 10px 30px rgba(0,0,0,.12);
+  --dock-bg: rgba(255,255,255,.5);
+  --pill: rgba(0,0,0,.55);
+  --drawer-bg: rgba(244,244,245,.85);
+  --glow: none;
+  --tgl-off: rgba(0,0,0,.12);
+  --accent-contrast: #fff;
+  --font-clock: 'Caveat', 'Segoe Script', cursive;
+}
+html[data-theme="ahad"][data-mode="dark"] {
+  --wall-scrim: rgba(0,0,0,.46);
+  --sb-color: #f2f2f2;
+  --accent: #e8e8ea;
+  --accent-2: #b8b8bc;
+  --text: #f2f2f2;
+  --text-muted: #8e8e93;
+  --surface: rgba(24,24,26,.68);
+  --surface-2: rgba(255,255,255,.06);
+  --surface-3: rgba(255,255,255,.08);
+  --border: rgba(255,255,255,.08);
+  --glass: rgba(14,14,16,.78);
+  --glass-blur: 34px;
+  --app-bg: #0c0c0d;
+  --icon-radius: 24%;
+  --card-radius: 20px;
+  --shadow: 0 10px 30px rgba(0,0,0,.5);
+  --dock-bg: rgba(255,255,255,.08);
+  --pill: rgba(255,255,255,.7);
+  --drawer-bg: rgba(12,12,13,.86);
+  --glow: none;
+  --tgl-off: rgba(255,255,255,.14);
+  --accent-contrast: #111;
+  --font-clock: 'Caveat', 'Segoe Script', cursive;
+}
+/* Every app icon renders true grayscale in the Ahad theme, regardless of its stored gradient color */
+html[data-theme="ahad"] .app-icon,
+html[data-theme="ahad"] .list-ic,
+html[data-theme="ahad"] .s-ic,
+html[data-theme="ahad"] .chat-avatar,
+html[data-theme="ahad"] .banner-ic { filter: grayscale(1) contrast(1.05); }
 
 /* ---------- Minimal · Light ---------- */
 html[data-theme="minimal"][data-mode="light"] {

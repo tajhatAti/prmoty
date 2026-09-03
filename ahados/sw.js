@@ -1,5 +1,5 @@
 /* AhadOs — service worker (PWA offline support) */
-const CACHE = 'ahados-v1';
+const CACHE = 'ahados-v2';
 const ASSETS = [
   './',
   './index.html',

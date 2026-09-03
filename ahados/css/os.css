@@ -92,7 +92,7 @@ html[data-theme="neon"] #wall-scrim { backdrop-filter: saturate(1.5) contrast(1.
 }
 #lock.unlocked { transform: translateY(-102%); opacity: 0; pointer-events: none; }
 .lock-mid { text-align: center; }
-.lock-time { font-size: 86px; font-weight: 200; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; }
+.lock-time { font-size: 86px; font-weight: 200; letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; font-family: var(--font-clock); }
 .lock-date { font-size: 17px; font-weight: 500; opacity: .92; margin-top: 10px; }
 .lock-bot { display: flex; flex-direction: column; align-items: center; gap: 26px; }
 .lock-hint { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 600; letter-spacing: .04em; opacity: .95; animation: hintBob 2.2s ease-in-out infinite; }
@@ -143,7 +143,7 @@ html[data-theme="neon"] #notch { background: #0b0a16; box-shadow: inset 0 0 0 1p
   margin-bottom: 22px;
   animation: fadeUp .5s var(--ease) both;
 }
-.hw-time { font-size: 40px; font-weight: 800; letter-spacing: -.02em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.hw-time { font-size: 40px; font-weight: 800; letter-spacing: -.02em; line-height: 1.05; font-variant-numeric: tabular-nums; font-family: var(--font-clock); }
 .hw-date { font-size: 13.5px; color: var(--text-muted); font-weight: 500; margin-top: 3px; }
 .hw-weather { margin-top: 12px; font-size: 13.5px; font-weight: 600; color: var(--accent); display: flex; align-items: center; gap: 6px; }
 
@@ -167,11 +167,12 @@ html[data-theme="neon"] #notch { background: #0b0a16; box-shadow: inset 0 0 0 1p
   cursor: pointer;
   position: relative;
   animation: fadeUp .45s var(--ease) both;
-  transition: transform .18s var(--ease);
+  transition: transform .32s var(--ease-spring);
   background: transparent; border: none;
+  -webkit-tap-highlight-color: transparent;
   font-family: var(--font-ui);
 }
-.app:active { transform: scale(.86); }
+.app:active { transform: scale(.86); transition: transform .1s var(--ease-press); }
 .app-icon {
   width: 58px; height: 58px;
   border-radius: var(--icon-radius);
@@ -179,8 +180,9 @@ html[data-theme="neon"] #notch { background: #0b0a16; box-shadow: inset 0 0 0 1p
   font-size: 28px;
   box-shadow: var(--glow), 0 4px 12px rgba(0,0,0,.18);
   position: relative;
-  transition: border-radius .4s var(--ease), box-shadow .4s;
+  transition: border-radius .4s var(--ease), box-shadow .3s var(--ease), transform .32s var(--ease-spring);
 }
+.app:active .app-icon { box-shadow: var(--glow), 0 1px 4px rgba(0,0,0,.14); }
 html[data-theme="minimal"] .app-icon { box-shadow: 0 3px 10px rgba(0,0,0,.1); }
 .app-badge {
   position: absolute; top: -2px; right: 6px;
@@ -309,7 +311,10 @@ html[data-theme="minimal"] #drawer-grid .app-icon { box-shadow: 0 3px 10px rgba(
   border: none; padding: 7px 14px; border-radius: 10px;
   font-weight: 600; font-size: 12px; font-family: var(--font-ui);
   cursor: pointer;
+  transition: transform .28s var(--ease-spring), opacity .2s;
+  -webkit-tap-highlight-color: transparent;
 }
+.notif-action button:active { transform: scale(.92); opacity: .85; transition: transform .1s var(--ease-press), opacity .1s; }
 
 /* ---------- App window ---------- */
 #appwin {
@@ -335,7 +340,10 @@ html[data-theme="minimal"] #drawer-grid .app-icon { box-shadow: 0 3px 10px rgba(
   display: flex; align-items: center; justify-content: center;
   background: var(--surface-3); border: none; color: var(--text);
   cursor: pointer;
+  transition: transform .28s var(--ease-spring), background .2s;
+  -webkit-tap-highlight-color: transparent;
 }
+#aw-back:active { transform: scale(.84); background: var(--surface-2); transition: transform .1s var(--ease-press), background .1s; }
 #aw-title { flex: 1; font-weight: 700; font-size: 16.5px; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #aw-right { width: 36px; display: flex; justify-content: flex-end; }
 #aw-body {
@@ -350,7 +358,8 @@ html[data-theme="minimal"] #drawer-grid .app-icon { box-shadow: 0 3px 10px rgba(
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
 }
-#home-pill { width: 128px; height: 5px; border-radius: 3px; background: var(--pill); opacity: .9; }
+#home-pill { width: 128px; height: 5px; border-radius: 3px; background: var(--pill); opacity: .9; transition: transform .28s var(--ease-spring), opacity .2s; -webkit-tap-highlight-color: transparent; }
+#navbar:active #home-pill { transform: scaleX(1.35); opacity: 1; transition: transform .1s var(--ease-press), opacity .1s; }
 
 /* ---------- Banners (top notifications) ---------- */
 #banners { position: absolute; top: calc(var(--sb-h) + 6px); left: 12px; right: 12px; z-index: 200; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
@@ -430,15 +439,20 @@ html[data-theme="minimal"] #drawer-grid .app-icon { box-shadow: 0 3px 10px rgba(
   flex-shrink: 0; transition: background .25s;
   border: none;
 }
+.switch {
+  -webkit-tap-highlight-color: transparent;
+}
 .switch::after {
   content: ''; position: absolute; top: 2.5px; left: 2.5px;
   width: 24px; height: 24px; border-radius: 50%;
   background: #fff;
   box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  transition: transform .25s var(--ease);
+  transition: transform .32s var(--ease-spring), width .15s var(--ease-press);
 }
 .switch.on { background: var(--accent); box-shadow: var(--glow); }
 .switch.on::after { transform: translateX(19px); }
+.switch:active::after { width: 28px; transition: width .1s var(--ease-press); }
+.switch.on:active::after { transform: translateX(15px); }
 
 /* Buttons */
 .btn {
@@ -447,9 +461,10 @@ html[data-theme="minimal"] #drawer-grid .app-icon { box-shadow: 0 3px 10px rgba(
   font-family: var(--font-ui); font-size: 14.5px; font-weight: 700;
   background: var(--surface-3); color: var(--text);
   cursor: pointer;
-  transition: transform .15s, opacity .2s;
+  transition: transform .3s var(--ease-spring), opacity .2s, background .2s;
+  -webkit-tap-highlight-color: transparent;
 }
-.btn:active { transform: scale(.95); }
+.btn:active { transform: scale(.94); opacity: .88; transition: transform .1s var(--ease-press), opacity .1s; }
 .btn.pri { background: var(--accent); color: var(--accent-contrast); box-shadow: var(--glow); }
 
 /* Inputs */
@@ -471,19 +486,24 @@ html[data-theme="minimal"] #drawer-grid .app-icon { box-shadow: 0 3px 10px rgba(
   flex: 1; border: none; background: none; color: var(--text-muted);
   font-family: var(--font-ui); font-size: 12.5px; font-weight: 700;
   padding: 8px 4px; border-radius: 10px; cursor: pointer;
-  transition: background .2s, color .2s, box-shadow .2s;
+  transition: background .25s var(--ease), color .25s, box-shadow .25s, transform .28s var(--ease-spring);
+  -webkit-tap-highlight-color: transparent;
 }
 .seg button.on { background: var(--surface-2); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,.14); }
+.seg button:active { transform: scale(.93); transition: transform .1s var(--ease-press); }
 
 .chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .chip {
   width: 56px; height: 56px; border-radius: 14px; overflow: hidden;
   border: 2px solid transparent; padding: 0; cursor: pointer;
   background: none;
-  transition: transform .15s;
+  transition: transform .3s var(--ease-spring), border-color .25s, box-shadow .25s;
+  -webkit-tap-highlight-color: transparent;
 }
 .chip img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .chip.sel { border-color: var(--accent); box-shadow: var(--glow); transform: scale(1.05); }
+.chip:active { transform: scale(.9); transition: transform .1s var(--ease-press); }
+.chip.sel:active { transform: scale(.98); }
 
 .empty-state { text-align: center; color: var(--text-muted); font-size: 13.5px; padding: 34px 10px; }
 .msg-bubble { display: inline-block; padding: 10px 14px; border-radius: 16px; font-size: 13.5px; line-height: 1.4; max-width: 82%; word-break: break-word; }

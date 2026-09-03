@@ -575,7 +575,8 @@ const AhadApps = {
           <div class="setting-row">
             <span class="s-ic" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">🎨</span>
             <div class="s-tx"><div class="s-t">Theme look</div><div class="s-s">4 styles to choose from</div></div>
-            <div class="seg" style="width:190px" id="theme-seg">
+            <div class="seg" style="width:230px" id="theme-seg">
+              <button data-t="ahad" class="${st.theme === 'ahad' ? 'on' : ''}">Ahad</button>
               <button data-t="ios" class="${st.theme === 'ios' ? 'on' : ''}">iOS</button>
               <button data-t="minimal" class="${st.theme === 'minimal' ? 'on' : ''}">Minimal</button>
               <button data-t="neon" class="${st.theme === 'neon' ? 'on' : ''}">Neon</button>
@@ -802,6 +803,7 @@ const AhadApps = {
   /* ================= THEME CENTER ================= */
   themecenter(body) {
     const themes = [
+      { id: 'ahad', name: 'Ahad', desc: 'Monochrome, signature look', emoji: '◐', grad: 'linear-gradient(135deg,#3a3a3c,#e8e8ea)' },
       { id: 'ios', name: 'iOS', desc: 'Frosted glass, rounded icons', emoji: '🍎', grad: 'linear-gradient(135deg,#0a84ff,#64d2ff)' },
       { id: 'minimal', name: 'Minimal', desc: 'Warm flat & clean', emoji: '🎨', grad: 'linear-gradient(135deg,#d95d39,#f2cc8f)' },
       { id: 'neon', name: 'Neon', desc: 'Cyberpunk glow', emoji: '⚡', grad: 'linear-gradient(135deg,#a855f7,#22d3ee)' },

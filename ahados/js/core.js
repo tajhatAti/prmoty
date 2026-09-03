@@ -9,7 +9,7 @@ const Ahad = {
     appOpen: null,
     drawerOpen: false,
     shadeOpen: false,
-    theme: 'ios',
+    theme: 'ahad',
     mode: 'dark',
     wallpaper: 'aurora',
     brightness: 100,
