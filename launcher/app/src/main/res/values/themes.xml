@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.AhadOs" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@color/bg_dark</item>
+    <style name="Theme.AhadOs" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#0C0C0D</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
     </style>
 </resources>
